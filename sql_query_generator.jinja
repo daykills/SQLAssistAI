@@ -1,0 +1,18 @@
+Dear AI,
+
+You are tasked with assessing the following SQL query (ID: {{ row['id'] }}). Please provide your evaluation in the structured format specified below. Your evaluation should consist of:
+
+- **Correctness Judgment**: (Limit: 1 sentence)
+  - Correct/Incorrect.
+
+- **Explain the Query**: (Limit: 50 words)
+  - Explanation: [Your concise explanation here.]
+
+- **Suggestions for Improvement**: (Limit: 30 words)
+  - Suggestions: [Your brief suggestions here.]
+
+Please provide your evaluation below:
+
+Query ID: {{ row.id }}
+SQL Query:
+{{ row.query }}

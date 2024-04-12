@@ -1,0 +1,49 @@
+id,query,judgement,explanation,suggestions,date
+1,"WITH empdata AS (
+
+(SELECT employee_id, first_name, manager_id, 1 AS level
+
+FROM employee
+
+WHERE employee_id = 1)
+
+UNION ALL
+
+(SELECT this.employee_id, this.first_name, this.manager_id, prior.level + 1
+
+FROM empdata prior
+
+INNER JOIN employee this ON this.manager_id = prior.employee_id)
+
+)
+
+SELECT e.employee_id, e.first_name, e.manager_id, e.level
+
+FROM empdata e
+
+ORDER BY e.level;",Correct,"Explanation: This recursive CTE (Common Table Expression) constructs an organizational hierarchy starting from a given employee (ID 1) and recursively includes all subordinates, indicating each level of depth.",Suggestions: Ensure max recursion depth is sufficient; consider indexing employee_id and manager_id for performance.,2024-04-09
+2,"SELECT
+
+o.order_month,
+
+SUM(
+
+CASE WHEN p.status = 'Paid' THEN o.order_amount ELSE 0 END
+
+) AS total_amount_paid,
+
+SUM(
+
+CASE WHEN p.status = 'Pending' THEN o.order_amount ELSE 0 END
+
+) AS total_amount_pending,
+
+SUM(
+
+CASE WHEN p.status = 'Default' THEN o.order_amount ELSE 0 END
+
+) AS total_amount_default
+
+FROM orders o
+
+INNER JOIN payment_status p ON o.payment_status_id = p.id;",Correct,"This SQL query calculates the total order amounts categorized by payment status ('Paid', 'Pending', 'Default') for each order month, joining orders with payment statuses.",Consider adding a `GROUP BY o.order_month` to aggregate results per month.,2024-04-09
