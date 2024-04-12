@@ -14,3 +14,24 @@ SQLAssistAI harnesses OpenAI's GPT models and Jinja templates for evaluating SQL
 git clone https://github.com/yourusername/SQLAssistAI.git
 cd SQLAssistAI
 ```
+
+2. Environment Setup
+```
+python3 -m venv env
+source env/bin/activate  # On macOS and Linux
+.\env\Scripts\activate   # On Windows
+```
+
+## Configuration
+
+* OpenAI API Key: Place your API key in a .env file at the project root:
+```
+OPENAI_API_KEY=your_api_key_here
+```
+
+## Usage
+* Run SQLAssistAI to evaluate your SQL queries through a simple command:
+```
+python query.py path/to/template.jinja
+
+```
